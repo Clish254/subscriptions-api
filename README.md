@@ -3,6 +3,7 @@ This is a sample subscriptions microservice api for #team-gold in HNGi7 by @clis
 ##**Do this before testing it**<br/>
 *Install mongodb in your machine, find a guide here (https://docs.mongodb.com/manual/installation/)<br/>
 *Instal nodejs<br/>
+*Install the app's dependencies <pre><code>npm install</pre></code>
 ##**To run the app** <br/>
 node run server.js<br/>
 ##**endpoints**<br/>
