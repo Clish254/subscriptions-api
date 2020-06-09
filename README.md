@@ -5,7 +5,7 @@ This is a sample subscriptions microservice api for #team-gold in HNGi7 by @clis
 *Instal nodejs<br/>
 *Install the app's dependencies <pre><code>npm install</pre></code>
 ##**To run the app** <br/>
-node run server.js<br/>
+<pre><code>node run server.js</pre></code><br/>
 ##**endpoints**<br/>
 *GET /api/subscribers: will give all subscribers stored in database and their ids.<br/>
 *GET /api/subscribers/<subscriber_id>: will give a specific subscriber with subscriber_id.<br/>
