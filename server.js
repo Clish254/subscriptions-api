@@ -1,6 +1,13 @@
 const  express = require('express');
 
 const bodyParser = require('body-parser')
+
+const cors = require('cors');
+
+const helmet = require('helmet');
+
+const morgan = require('morgan');
+
 const app = express();
 //setup server port;
 const port = process.env.Production || 3000;
@@ -8,6 +15,15 @@ const port = process.env.Production || 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
+
+//enabling cors for all requests
+app.use(cors());
+
+// adding Helmet to enhance our API's security
+app.use(helmet());
+
+// adding morgan to log HTTP requests
+app.use(morgan('combined'));
 
 //configuring the database
 const dbConfig = require('./config/db.config.js')
