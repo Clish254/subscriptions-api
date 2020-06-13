@@ -7,13 +7,19 @@ This is a sample subscriptions microservice api for #team-gold in HNGi7 by @clis
 ##**To run the app** <br/>
 <pre><code>node run server.js</pre></code><br/>
 ##**endpoints**<br/>
-*GET /api/subscribers: will give all subscribers stored in database and their ids.<br/>
-*GET /api/subscribers/<subscriber_id>: will give a specific subscriber with subscriber_id.<br/>
-*POST /api/subscribers : create a new subscriber<br/>
-*PATCH /api/subscribers/<subscriber_id>: update a subscriber partially //i've not tested this yet,will update later<br/>
-*DELETE /api/subscribers/<subscriber_id>: delete a subscriber<br/>
-*PUT /api/subscribers/<subscriber_id>: update a subscriber completely<br/>
+*POST /v1/user/register : will add user to the database with name,email,and password.
+*POST /v1/user/login : will authenticate a user and respond with an access token which will be added to the headers "auth-token" : "token",this token must be used in order to access other routes.
+*GET /v1/subscribers: will give all subscribers stored in database and their ids.<br/>
+*GET /v1/subscribers/<subscriber_id>: will give a specific subscriber with subscriber_id.<br/>
+*POST /v1/subscribers : create a new subscriber<br/>
+*DELETE /v1/subscribers/<subscriber_id>: delete a subscriber<br/>
+*PUT /v1/subscribers/<subscriber_id>: update a subscriber completely<br/>
 
+user schema = {
+    name : String,
+    email : String,
+    password : String
+}
 subscriber schema = {
     first_name:String,
     last_name:String,
