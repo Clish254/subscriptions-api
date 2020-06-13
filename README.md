@@ -19,7 +19,7 @@ user schema = {
     name : String,
     email : String,
     password : String
-}
+}<br/>
 subscriber schema = {
     first_name:String,
     last_name:String,
