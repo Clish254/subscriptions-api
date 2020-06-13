@@ -7,8 +7,8 @@ This is a sample subscriptions microservice api for #team-gold in HNGi7 by @clis
 ##**To run the app** <br/>
 <pre><code>node run server.js</pre></code><br/>
 ##**endpoints**<br/>
-*POST /v1/user/register : will add user to the database with name,email,and password.
-*POST /v1/user/login : will authenticate a user and respond with an access token which will be added to the headers "auth-token" : "token",this token must be used in order to access other routes.
+*POST /v1/user/register : will add user to the database with name,email,and password.<br/>
+*POST /v1/user/login : will authenticate a user and respond with an access token which will be added to the headers "auth-token" : "token",this token must be used in order to access other routes.<br/>
 *GET /v1/subscribers: will give all subscribers stored in database and their ids.<br/>
 *GET /v1/subscribers/<subscriber_id>: will give a specific subscriber with subscriber_id.<br/>
 *POST /v1/subscribers : create a new subscriber<br/>
