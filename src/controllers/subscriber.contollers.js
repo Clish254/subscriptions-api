@@ -5,7 +5,10 @@ const Subscriber = require('../models/subscriber.model');
 exports.findAll = (req,res) => {
     Subscriber.find()
     .then(subscribers => {
-    res.send(subscribers);
+    if (UserResType === "text/Html"){
+        res.send(subscribers);
+    }
+    res.json(subscribers)
 }).catch(err => {
     res.status(500).send({
         message:err.message || "Something went wrong while retrieving subscribers."
@@ -32,7 +35,10 @@ exports.create = (req,res) => {
     //save subscriber in our database
     subscriber.save()
         .then(data => {
-            res.send(data);
+            if (UserResType === "text/Html"){
+                res.send(data);
+            }
+            res.json(data);
         }).catch(err => {
             res.status(500).send({
                 message:err.message || "Something went wrong while creating new subscriber"         
@@ -48,7 +54,10 @@ exports.findOne = (req,res) => {
                     message:`Subscriber not found with id ${req.params.id}`
                 });
             }
-            res.send(subscriber);
+            if (UserResType === "text/Html"){
+                res.send(subscriber);
+            }
+            res.json(subscriber);
         }).catch(err => {
             if(err.kind === 'ObjectId'){
                 return res.status(404).send({
@@ -81,7 +90,10 @@ exports.update = (req,res) => {
                 message: `Subscriber not found`
             });
         }
-        res.send(subscriber);
+        if (UserResType === "text/Html"){
+            res.send(subscriber);
+        }
+        res.json(subscriber);
     }).catch(err => {
         if(err.kind === 'ObjectId') {
             return res.status(404).send({

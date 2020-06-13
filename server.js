@@ -1,12 +1,10 @@
 const  express = require('express');
 
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+
+const dotenv = require("dotenv");
 
 const cors = require('cors');
-
-const helmet = require('helmet');
-
-const morgan = require('morgan');
 
 const app = express();
 //setup server port;
@@ -19,18 +17,11 @@ app.use(bodyParser.json());
 //enabling cors for all requests
 app.use(cors());
 
-// adding Helmet to enhance our API's security
-app.use(helmet());
-
-// adding morgan to log HTTP requests
-app.use(morgan('combined'));
-
-//configuring the database
-const dbConfig = require('./config/db.config.js')
+dotenv.config();
 
 const mongoose = require('mongoose');
 
-mongoose.connect(dbConfig.url,{useNewUrlParser: true, useUnifiedTopology: true,useFindAndModify: false}).then(()=>{
+mongoose.connect(process.env.DB_CONNECT,{useNewUrlParser: true, useUnifiedTopology: true,useFindAndModify: false}).then(()=>{
         console.log("Successfully connected to our database");
     }).catch(err => {
         console.log('Could not connect to the database.',err);
@@ -44,9 +35,21 @@ app.get('/',(req,res)=>{
 
 //require Subscribers routes
 const subscriberRoutes = require('./src/routes/subscriber.routes');
+//import other routes
+//import routes
+const authRoute = require('./src/routes/auth');
+const postRoute = require('./src/routes/posts');
+const docsRoute = require('./src/routes/documentation');
+const configRoute = require('./src/routes/config')
+
+//route middlewares
+app.use('/v1/user',authRoute);
+app.use('/v1/posts',postRoute);
+app.use('/v1/config',configRoute);
+
 
 //using subscribers routes as a middleware
-app.use('/api/subscribers',subscriberRoutes)
+app.use('/v1/subscribers',subscriberRoutes)
 
 app.listen(port,()=> {
     console.log(`Server listening on port ${port}`)
